@@ -7,8 +7,8 @@ jobs:
     permissions: {}
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-        with:
-          persist-credentials: 'false'
+        # with:
+        #   persist-credentials: 'false'
       - id: token
         uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
         with:
@@ -26,6 +26,4 @@ jobs:
         env:
           TOKEN: ${{steps.token.outputs.token}}
       - run: gh auth setup-git
-      - run: gh auth status
-      - run: git config -l
       - run: git push origin --delete "lock/foo"
