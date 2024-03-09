@@ -23,4 +23,5 @@ jobs:
       - run: echo "$TOKEN" | gh auth login --with-token
         env:
           TOKEN: ${{steps.token.outputs.token}}
+      - run: gh auth setup-git
       - run: git push origin --delete "lock/foo"
