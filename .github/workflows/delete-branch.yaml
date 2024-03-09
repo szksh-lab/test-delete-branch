@@ -25,4 +25,5 @@ jobs:
           TOKEN: ${{steps.token.outputs.token}}
       - run: gh auth setup-git
       - run: gh auth status
+      - run: git config -l
       - run: git push origin --delete "lock/foo"
