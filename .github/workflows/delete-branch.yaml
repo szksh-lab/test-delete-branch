@@ -7,8 +7,6 @@ jobs:
     permissions: {}
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-        # with:
-        #   persist-credentials: 'false'
       - id: token
         uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
         with:
@@ -22,8 +20,7 @@ jobs:
             [
               "${{github.event.repository.name}}"
             ]
-      - run: echo "$TOKEN" | gh auth login --with-token
+      - run: gh api -X DELETE "repos/{owner}/{repo}/git/refs/heads/$BRANCH"
         env:
-          TOKEN: ${{steps.token.outputs.token}}
-      - run: gh auth setup-git
-      - run: git push origin --delete "lock/foo"
+          GH_TOKEN: ${{steps.token.outputs.token}}
+          BRANCH: lock/foo
