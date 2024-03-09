@@ -30,8 +30,10 @@ jobs:
             exit 0
           fi
           if ghcp empty-commit -r "$GITHUB_REPOSITORY" -m "$MSG" -b "$BRANCH"; then
+            echo ""
             echo "::notice::Locked The target"
           else
+            echo ""
             echo "::error::Failed to Lock the target"
             exit 1
           fi
