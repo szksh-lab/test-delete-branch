@@ -37,5 +37,5 @@ jobs:
           fi
         env:
           MSG: lock
-          GH_TOKEN: ${{steps.token.outputs.token}}
+          GITHUB_TOKEN: ${{steps.token.outputs.token}}
           BRANCH: lock/foo
